@@ -1,0 +1,28 @@
+# sample for breezart hvac control using modbus 
+# http://breezart-tech.ru/versions/jetlogic/JL_Modbus_Pub.html
+modbus:
+- name: hvac
+  type: tcp
+  host: hvac.home
+  port: 502
+  climates:
+    - name: "Breezart"
+      slave: 1
+      address: 13
+      data_type: uint16
+      input_type: input
+      count: 1
+      max_temp: 25
+      min_temp: 5
+      offset: 0
+      precision: 1
+      scale: 0.1
+      target_temp_register: 1
+      temp_step: 1
+      temperature_unit: C
+      hvac_mode_register:
+        address: 7
+        values:
+          state_heat: 1
+          state_cool: 0
+      hvac_onoff_register: 3
