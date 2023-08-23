@@ -3,12 +3,14 @@
 modbus:
 - name: hvac
   type: tcp
-  host: hvac.home
+  host: 192.168.246.127
   port: 502
+  retry_on_empty: true
+  retries: 10
   climates:
     - name: "Breezart"
       slave: 1
-      address: 13
+      address: 50
       data_type: uint16
       input_type: input
       count: 1
@@ -26,3 +28,10 @@ modbus:
           state_heat: 1
           state_cool: 0
       hvac_onoff_register: 3
+  sensors:
+    - name: "Breezart fan"
+      unique_id:  "breezartfan"
+      slave: 1
+      address: 64000
+      input_type: input
+      scale: 0.01
